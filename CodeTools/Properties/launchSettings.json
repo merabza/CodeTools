@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CodeTools": {
+      "commandName": "Project",
+      "commandLineArgs": "--use \"D:\\1WorkSecurity\\CodeTools\\CodeTools.json\""
+    }
+  }
+}
