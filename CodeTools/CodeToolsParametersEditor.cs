@@ -2,6 +2,7 @@
 
 using CliParameters;
 using CliParameters.FieldEditors;
+using CodeTools.Models;
 using LibParameters;
 using Microsoft.Extensions.Logging;
 

@@ -10,16 +10,17 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using CodeTools.MenuCommands;
+using CodeTools.Models;
 
 namespace CodeTools;
 
 // ReSharper disable once ConvertToPrimaryConstructor
-public sealed class CodeTools : CliAppLoop
+public sealed class CodeToolsCliAppLoop : CliAppLoop
 {
     private readonly ILogger _logger;
     private readonly ParametersManager _parametersManager;
 
-    public CodeTools(ILogger logger, ParametersManager parametersManager)
+    public CodeToolsCliAppLoop(ILogger logger, ParametersManager parametersManager)
     {
         _logger = logger;
         _parametersManager = parametersManager;
@@ -36,6 +37,8 @@ public sealed class CodeTools : CliAppLoop
         mainMenuSet.AddMenuItem(new ParametersEditorListCliMenuCommand(codeToolsParametersEditor));
 
         //საჭირო მენიუს ელემენტები
+        var jsonSorterSubMenuCommand = new JsonManipulationSubMenuCommand(_logger, _parametersManager);
+        mainMenuSet.AddMenuItem(jsonSorterSubMenuCommand);
 
         var newAppTaskCommand = new NewTaskCommand(_parametersManager);
         mainMenuSet.AddMenuItem(newAppTaskCommand);

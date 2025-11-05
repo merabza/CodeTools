@@ -55,7 +55,7 @@ try
         return 5;
     }
 
-    var codeTools = new CodeTools.CodeTools(logger, new ParametersManager(parametersFileName, par));
+    var codeTools = new CodeTools.CodeToolsCliAppLoop(logger, new ParametersManager(parametersFileName, par));
 
     return codeTools.Run() ? 0 : 1;
 }
