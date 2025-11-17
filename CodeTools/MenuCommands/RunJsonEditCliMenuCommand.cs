@@ -1,13 +1,10 @@
-﻿using CliMenu;
+﻿using System;
+using System.IO;
+using CliMenu;
 using CliParameters.CliMenuCommands;
-using CodeTools.Models;
-using CodeTools.ToolActions;
 using LibDataInput;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
-using System;
-using System.IO;
-using System.Threading;
 
 namespace CodeTools.MenuCommands;
 
@@ -16,7 +13,8 @@ public class RunJsonEditCliMenuCommand : CliMenuCommand
     private readonly string _jsonFileName;
     private readonly ILogger _logger;
 
-    public RunJsonEditCliMenuCommand(ILogger logger, string jsonFileName) : base("Run JSON Editor", EMenuAction.LoadSubMenu)
+    public RunJsonEditCliMenuCommand(ILogger logger, string jsonFileName) : base("Run JSON Editor",
+        EMenuAction.LoadSubMenu)
     {
         _logger = logger;
         _jsonFileName = jsonFileName;
@@ -34,18 +32,13 @@ public class RunJsonEditCliMenuCommand : CliMenuCommand
         var deleteTaskCommand = new ClearJsonCliMenuCommand(_jsonFileName);
         jsonEditSubMenuSet.AddMenuItem(deleteTaskCommand);
 
-        
         var jsonString = File.ReadAllText(_jsonFileName);
-        JObject jsonJObject = JObject.Parse(jsonString);
+        var jsonJObject = JObject.Parse(jsonString);
 
-        foreach (var cliMenuCommand in  JsonCliMenuCommandFactory.Create(jsonJObject))
-        {
+        foreach (var cliMenuCommand in JsonCliMenuCommandFactory.Create(jsonJObject))
             jsonEditSubMenuSet.AddMenuItem(cliMenuCommand);
-        }
 
         //appSetJObject.Type
-
-
 
         //var deleteTaskCommand = new DeleteJsonFileRecordCliMenuCommand(_parametersManager, Name);
         //taskSubMenuSet.AddMenuItem(deleteTaskCommand);
@@ -56,11 +49,11 @@ public class RunJsonEditCliMenuCommand : CliMenuCommand
         //var parameters = (CodeToolsParameters)_parametersManager.Parameters;
         //var task = parameters.GetTask(Name);
         var key = ConsoleKey.Escape.Value().ToLower();
-        jsonEditSubMenuSet.AddMenuItem(key, new ExitToMainMenuCliMenuCommand("Exit to level up menu", null), key.Length);
+        jsonEditSubMenuSet.AddMenuItem(key, new ExitToMainMenuCliMenuCommand("Exit to level up menu", null),
+            key.Length);
         return jsonEditSubMenuSet;
     }
 }
-
 
 /*
      public enum JTokenType

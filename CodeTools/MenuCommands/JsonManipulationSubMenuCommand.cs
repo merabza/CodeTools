@@ -14,7 +14,7 @@ public sealed class JsonManipulationSubMenuCommand : CliMenuCommand
     private readonly ILogger _logger;
     private readonly ParametersManager _parametersManager;
 
-    public JsonManipulationSubMenuCommand(ILogger logger, ParametersManager parametersManager) : base("Json Sorter",EMenuAction.LoadSubMenu)
+    public JsonManipulationSubMenuCommand(ILogger logger, ParametersManager parametersManager) : base("Json Editor",EMenuAction.LoadSubMenu)
     {
         _logger = logger;
         _parametersManager = parametersManager;
@@ -27,7 +27,7 @@ public sealed class JsonManipulationSubMenuCommand : CliMenuCommand
 
     public override CliMenuSet GetSubMenu()
     {
-        var menuSet = new CliMenuSet("Json Sorter");
+        var menuSet = new CliMenuSet("Json Editor");
 
         var parameters = (CodeToolsParameters)_parametersManager.Parameters;
 

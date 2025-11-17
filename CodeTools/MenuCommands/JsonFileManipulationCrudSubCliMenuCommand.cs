@@ -31,11 +31,11 @@ public sealed class JsonFileManipulationCrudSubCliMenuCommand : CliMenuCommand
     public override CliMenuSet GetSubMenu()
     {
         var jsonFileManipulationCrudSubMenuSet = new CliMenuSet(Name);
-        var deleteTaskCommand = new DeleteJsonFileRecordCliMenuCommand(_parametersManager, Name);
-        jsonFileManipulationCrudSubMenuSet.AddMenuItem(deleteTaskCommand);
+        var deleteJsonFileRecordCliMenuCommand = new DeleteJsonFileRecordCliMenuCommand(_parametersManager, Name);
+        jsonFileManipulationCrudSubMenuSet.AddMenuItem(deleteJsonFileRecordCliMenuCommand);
         jsonFileManipulationCrudSubMenuSet.AddMenuItem(
             new EditJsonFileNameNameCliMenuCommand(_parametersManager, Name));
-        jsonFileManipulationCrudSubMenuSet.AddMenuItem(new RunJsonSortCliMenuCommand(_logger, Name));
+        //jsonFileManipulationCrudSubMenuSet.AddMenuItem(new RunJsonSortCliMenuCommand(_logger, Name));
         jsonFileManipulationCrudSubMenuSet.AddMenuItem(new RunJsonEditCliMenuCommand(_logger, Name));
         //ეს საჭირო იქნება, თუ ამ მენიუში საჭირო გახდება ამოცანის დამატებითი რედაქტორების შექმნა
         var parameters = (CodeToolsParameters)_parametersManager.Parameters;
