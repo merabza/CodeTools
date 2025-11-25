@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CodeTools.MenuCommands;
 
-public class RunJsonEditCliMenuCommand : CliMenuCommand
+public sealed class RunJsonEditCliMenuCommand : CliMenuCommand
 {
     private readonly string _jsonFileName;
     private readonly ILogger _logger;

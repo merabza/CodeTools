@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CodeTools.ToolActions;
 
-public class RunSortToolAction : ToolAction
+public sealed class RunSortToolAction : ToolAction
 {
     private readonly string _jsonFileName;
 

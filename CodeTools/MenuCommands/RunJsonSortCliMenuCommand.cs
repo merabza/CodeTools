@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CodeTools.MenuCommands;
 
-public class RunJsonSortCliMenuCommand : CliMenuCommand
+public sealed class RunJsonSortCliMenuCommand : CliMenuCommand
 {
     private readonly string _jsonFileName;
     private readonly ILogger _logger;

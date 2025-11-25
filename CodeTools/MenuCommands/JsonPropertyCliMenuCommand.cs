@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CodeTools.MenuCommands;
 
-public class JsonPropertyCliMenuCommand : CliMenuCommand
+public sealed class JsonPropertyCliMenuCommand : CliMenuCommand
 {
     private readonly JProperty _jProperty;
 

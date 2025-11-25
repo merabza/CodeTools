@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CodeTools.MenuCommands;
 
-public class JsonCliMenuCommandFactory
+public sealed class JsonCliMenuCommandFactory
 {
     public static List<CliMenuCommand> Create(JToken jsonToken)
     {
