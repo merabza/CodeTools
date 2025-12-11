@@ -1,7 +1,7 @@
-﻿using LibToolActions;
-using Microsoft.Extensions.Logging;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using LibToolActions;
+using Microsoft.Extensions.Logging;
 
 namespace CodeTools.ToolActions;
 

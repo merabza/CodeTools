@@ -1,10 +1,8 @@
 //Created by DeleteTaskCommandCreator at 11/3/2025 5:54:44 PM
 
+using System.IO;
 using CliMenu;
-using CodeTools.Models;
 using LibDataInput;
-using LibParameters;
-using SystemToolsShared;
 
 namespace CodeTools.MenuCommands;
 
@@ -13,8 +11,7 @@ public sealed class ClearJsonCliMenuCommand : CliMenuCommand
 {
     private readonly string _jsonFileName;
 
-    public ClearJsonCliMenuCommand(string jsonFileName) : base(
-        "Delete Json File Record", EMenuAction.LevelUp)
+    public ClearJsonCliMenuCommand(string jsonFileName) : base("Delete Json File Record", EMenuAction.LevelUp)
     {
         _jsonFileName = jsonFileName;
     }
@@ -24,7 +21,7 @@ public sealed class ClearJsonCliMenuCommand : CliMenuCommand
         if (!Inputer.InputBool($"This will Delete All data from Json File {_jsonFileName}. are you sure ? ", false,
                 false)) return false;
 
-        System.IO.File.WriteAllText(_jsonFileName, "");
+        File.WriteAllText(_jsonFileName, "");
 
         return true;
     }

@@ -11,8 +11,8 @@ public sealed class CodeToolsTaskRunner
 {
     private readonly ILogger _logger;
     private readonly CodeToolsParameters _par;
-    private readonly string? _taskName;
     private readonly TaskModel? _task;
+    private readonly string? _taskName;
 
     public CodeToolsTaskRunner(ILogger logger, CodeToolsParameters par, string taskName, TaskModel task)
     {

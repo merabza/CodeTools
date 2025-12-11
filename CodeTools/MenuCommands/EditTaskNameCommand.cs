@@ -1,10 +1,9 @@
 //Created by EditTaskNameCommandCreator at 11/3/2025 5:54:44 PM
 
-using System;
 using CliMenu;
-using LibParameters;
 using CodeTools.Models;
 using LibDataInput;
+using LibParameters;
 using SystemToolsShared;
 
 namespace CodeTools.MenuCommands;
@@ -34,15 +33,9 @@ public sealed class EditTaskNameCommand : CliMenuCommand
 
         //ამოცანის სახელის რედაქტირება
         var newTaskName = Inputer.InputText("change  Task Name ", _taskName);
-        if (string.IsNullOrWhiteSpace(newTaskName))
-        {
-            return false;
-        }
+        if (string.IsNullOrWhiteSpace(newTaskName)) return false;
 
-        if (_taskName == newTaskName)
-        {
-            return false;
-        }
+        if (_taskName == newTaskName) return false;
 
         if (!parameters.RemoveTask(_taskName))
         {

@@ -1,22 +1,21 @@
-﻿using CliMenu;
+﻿using System;
+using System.Linq;
+using CliMenu;
 using CliParameters.CliMenuCommands;
 using CodeTools.Models;
-using LibParameters;
-using System;
-using System.Linq;
 using LibDataInput;
-using Microsoft.Extensions.Logging;
+using LibParameters;
 
 namespace CodeTools.MenuCommands;
 
 public sealed class JsonManipulationSubMenuCommand : CliMenuCommand
 {
-    private readonly ILogger _logger;
     private readonly ParametersManager _parametersManager;
 
-    public JsonManipulationSubMenuCommand(ILogger logger, ParametersManager parametersManager) : base("Json Editor",EMenuAction.LoadSubMenu)
+    // ReSharper disable once ConvertToPrimaryConstructor
+    public JsonManipulationSubMenuCommand(ParametersManager parametersManager) : base("Json Editor",
+        EMenuAction.LoadSubMenu)
     {
-        _logger = logger;
         _parametersManager = parametersManager;
     }
 
@@ -35,10 +34,7 @@ public sealed class JsonManipulationSubMenuCommand : CliMenuCommand
         var newAppTaskCommand = new NewJsonFileCommand(_parametersManager);
         menuSet.AddMenuItem(newAppTaskCommand);
         foreach (var jsonFileName in parameters.JsonFilesForSortPaths.OrderBy(o => o))
-        {
-            menuSet.AddMenuItem(new JsonFileManipulationCrudSubCliMenuCommand(_logger, _parametersManager, jsonFileName));
-        }
-
+            menuSet.AddMenuItem(new JsonFileManipulationCrudSubCliMenuCommand(_parametersManager, jsonFileName));
 
         var key = ConsoleKey.Escape.Value().ToLower();
         menuSet.AddMenuItem(key, new ExitToMainMenuCliMenuCommand("Exit to level up menu", null), key.Length);

@@ -39,6 +39,7 @@ public sealed class RunJsonSortCliMenuCommand : CliMenuCommand
         {
             Console.WriteLine(e);
         }
+
         return false;
     }
 }

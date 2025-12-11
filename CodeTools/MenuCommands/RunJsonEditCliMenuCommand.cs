@@ -3,7 +3,6 @@ using System.IO;
 using CliMenu;
 using CliParameters.CliMenuCommands;
 using LibDataInput;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 
 namespace CodeTools.MenuCommands;
@@ -11,12 +10,10 @@ namespace CodeTools.MenuCommands;
 public sealed class RunJsonEditCliMenuCommand : CliMenuCommand
 {
     private readonly string _jsonFileName;
-    private readonly ILogger _logger;
 
-    public RunJsonEditCliMenuCommand(ILogger logger, string jsonFileName) : base("Run JSON Editor",
-        EMenuAction.LoadSubMenu)
+    // ReSharper disable once ConvertToPrimaryConstructor
+    public RunJsonEditCliMenuCommand(string jsonFileName) : base("Run JSON Editor", EMenuAction.LoadSubMenu)
     {
-        _logger = logger;
         _jsonFileName = jsonFileName;
     }
 

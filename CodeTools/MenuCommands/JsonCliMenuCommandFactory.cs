@@ -15,7 +15,8 @@ public sealed class JsonCliMenuCommandFactory
             case JTokenType.None:
                 break;
             case JTokenType.Object:
-                return ((JObject)jsonToken).Properties().Select(CliMenuCommand (s) => new JsonPropertyCliMenuCommand(s)).ToList();
+                return ((JObject)jsonToken).Properties().Select(CliMenuCommand (s) => new JsonPropertyCliMenuCommand(s))
+                    .ToList();
             case JTokenType.Array:
                 break;
             case JTokenType.Constructor:
@@ -51,8 +52,10 @@ public sealed class JsonCliMenuCommandFactory
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
         return [];
     }
+
     public static List<CliMenuCommand> Create(JObject jsonJObject)
     {
         switch (jsonJObject.Type)
@@ -60,7 +63,8 @@ public sealed class JsonCliMenuCommandFactory
             case JTokenType.None:
                 break;
             case JTokenType.Object:
-                return jsonJObject.Properties().Select(CliMenuCommand (s) => new JsonPropertyCliMenuCommand(s)).ToList();
+                return jsonJObject.Properties().Select(CliMenuCommand (s) => new JsonPropertyCliMenuCommand(s))
+                    .ToList();
             case JTokenType.Array:
                 break;
             case JTokenType.Constructor:
@@ -96,6 +100,7 @@ public sealed class JsonCliMenuCommandFactory
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
         return [];
     }
 }
