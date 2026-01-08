@@ -6,6 +6,7 @@
   </Configurations>
   <Folder Name="/AppCliTools/">
     <Project Path="../AppCliTools/CliMenu/CliMenu.csproj" />
+    <Project Path="../AppCliTools/CliParameters.Tests/CliParameters.Tests.csproj" />
     <Project Path="../AppCliTools/CliParameters/CliParameters.csproj" />
     <Project Path="../AppCliTools/CliTools/CliTools.csproj" />
     <Project Path="../AppCliTools/LibDataInput/LibDataInput.csproj" />
@@ -15,6 +16,7 @@
     <Project Path="../ParametersManagement/LibParameters/LibParameters.csproj" />
   </Folder>
   <Folder Name="/SystemTools/">
+    <Project Path="../SystemTools/SystemToolsShared.Tests/SystemToolsShared.Tests.csproj" />
     <Project Path="../SystemTools/SystemToolsShared/SystemToolsShared.csproj" />
   </Folder>
   <Folder Name="/ToolsManagement/">
