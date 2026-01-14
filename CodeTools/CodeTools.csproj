@@ -6,7 +6,7 @@
         <ProjectReference Include="..\..\AppCliTools\CliTools\CliTools.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.2" />
     </ItemGroup>
     <PropertyGroup>
         <OutputType>Exe</OutputType>
