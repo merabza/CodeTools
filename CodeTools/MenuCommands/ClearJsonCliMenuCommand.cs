@@ -1,8 +1,8 @@
 //Created by DeleteTaskCommandCreator at 11/3/2025 5:54:44 PM
 
 using System.IO;
-using CliMenu;
-using LibDataInput;
+using AppCliTools.CliMenu;
+using AppCliTools.LibDataInput;
 
 namespace CodeTools.MenuCommands;
 
@@ -19,7 +19,10 @@ public sealed class ClearJsonCliMenuCommand : CliMenuCommand
     protected override bool RunBody()
     {
         if (!Inputer.InputBool($"This will Delete All data from Json File {_jsonFileName}. are you sure ? ", false,
-                false)) return false;
+                false))
+        {
+            return false;
+        }
 
         File.WriteAllText(_jsonFileName, "");
 

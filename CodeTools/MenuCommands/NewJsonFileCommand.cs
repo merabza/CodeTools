@@ -1,11 +1,11 @@
 //Created by NewTaskCommandCreator at 11/3/2025 5:54:44 PM
 
 using System;
-using CliMenu;
+using AppCliTools.CliMenu;
+using AppCliTools.LibMenuInput;
 using CodeTools.Models;
-using LibMenuInput;
-using LibParameters;
-using SystemToolsShared;
+using ParametersManagement.LibParameters;
+using SystemTools.SystemToolsShared;
 
 namespace CodeTools.MenuCommands;
 
@@ -28,7 +28,10 @@ public sealed class NewJsonFileCommand : CliMenuCommand
         Console.WriteLine("Create new Json file record started");
 
         var newJsonFileName = MenuInputer.InputFilePath("New Json file Name", null);
-        if (string.IsNullOrEmpty(newJsonFileName)) return false;
+        if (string.IsNullOrEmpty(newJsonFileName))
+        {
+            return false;
+        }
 
         //ახალი ამოცანის შექმნა და ჩამატება ამოცანების სიაში
         if (!parameters.AddJsonFileName(newJsonFileName))

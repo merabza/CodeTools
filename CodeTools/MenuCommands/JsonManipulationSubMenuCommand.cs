@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using CliMenu;
-using CliParameters.CliMenuCommands;
+using AppCliTools.CliMenu;
+using AppCliTools.CliParameters.CliMenuCommands;
+using AppCliTools.LibDataInput;
 using CodeTools.Models;
-using LibDataInput;
-using LibParameters;
+using ParametersManagement.LibParameters;
 
 namespace CodeTools.MenuCommands;
 
@@ -34,9 +34,11 @@ public sealed class JsonManipulationSubMenuCommand : CliMenuCommand
         var newAppTaskCommand = new NewJsonFileCommand(_parametersManager);
         menuSet.AddMenuItem(newAppTaskCommand);
         foreach (var jsonFileName in parameters.JsonFilesForSortPaths.OrderBy(o => o))
+        {
             menuSet.AddMenuItem(new JsonFileManipulationCrudSubCliMenuCommand(_parametersManager, jsonFileName));
+        }
 
-        var key = ConsoleKey.Escape.Value().ToLower();
+        var key = ConsoleKey.Escape.Value().ToUpperInvariant();
         menuSet.AddMenuItem(key, new ExitToMainMenuCliMenuCommand("Exit to level up menu", null), key.Length);
         return menuSet;
     }

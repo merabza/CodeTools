@@ -2,11 +2,11 @@
 
 using System;
 using System.Diagnostics;
-using CliMenu;
+using AppCliTools.CliMenu;
 using CodeTools.Models;
-using LibParameters;
 using Microsoft.Extensions.Logging;
-using SystemToolsShared;
+using ParametersManagement.LibParameters;
+using SystemTools.SystemToolsShared;
 
 namespace CodeTools.MenuCommands;
 

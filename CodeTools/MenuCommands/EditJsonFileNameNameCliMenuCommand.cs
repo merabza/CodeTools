@@ -1,10 +1,10 @@
 //Created by EditTaskNameCommandCreator at 11/3/2025 5:54:44 PM
 
-using CliMenu;
+using AppCliTools.CliMenu;
+using AppCliTools.LibMenuInput;
 using CodeTools.Models;
-using LibMenuInput;
-using LibParameters;
-using SystemToolsShared;
+using ParametersManagement.LibParameters;
+using SystemTools.SystemToolsShared;
 
 namespace CodeTools.MenuCommands;
 
@@ -32,9 +32,15 @@ public sealed class EditJsonFileNameNameCliMenuCommand : CliMenuCommand
 
         //ამოცანის სახელის რედაქტირება
         var newJsonFileName = MenuInputer.InputFilePath("change Json file Name ", _jsonFileName);
-        if (string.IsNullOrWhiteSpace(newJsonFileName)) return false;
+        if (string.IsNullOrWhiteSpace(newJsonFileName))
+        {
+            return false;
+        }
 
-        if (_jsonFileName == newJsonFileName) return false;
+        if (_jsonFileName == newJsonFileName)
+        {
+            return false;
+        }
 
         parameters.JsonFilesForSortPaths.Remove(_jsonFileName);
         parameters.JsonFilesForSortPaths.Add(newJsonFileName);

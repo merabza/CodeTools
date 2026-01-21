@@ -1,10 +1,10 @@
 //Created by DeleteTaskCommandCreator at 11/3/2025 5:54:44 PM
 
-using CliMenu;
+using AppCliTools.CliMenu;
+using AppCliTools.LibDataInput;
 using CodeTools.Models;
-using LibDataInput;
-using LibParameters;
-using SystemToolsShared;
+using ParametersManagement.LibParameters;
+using SystemTools.SystemToolsShared;
 
 namespace CodeTools.MenuCommands;
 
@@ -31,7 +31,10 @@ public sealed class DeleteTaskCommand : CliMenuCommand
             return false;
         }
 
-        if (!Inputer.InputBool($"This will Delete  Task {_taskName}.are you sure ? ", false, false)) return false;
+        if (!Inputer.InputBool($"This will Delete  Task {_taskName}.are you sure ? ", false, false))
+        {
+            return false;
+        }
 
         parameters.RemoveTask(_taskName);
         _parametersManager.Save(parameters, $"Task {_taskName} deleted.");

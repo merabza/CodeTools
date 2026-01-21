@@ -1,11 +1,11 @@
 //Created by NewTaskCommandCreator at 11/3/2025 5:54:44 PM
 
 using System;
-using CliMenu;
+using AppCliTools.CliMenu;
+using AppCliTools.LibDataInput;
 using CodeTools.Models;
-using LibDataInput;
-using LibParameters;
-using SystemToolsShared;
+using ParametersManagement.LibParameters;
+using SystemTools.SystemToolsShared;
 
 namespace CodeTools.MenuCommands;
 
@@ -28,7 +28,10 @@ public sealed class NewTaskCommand : CliMenuCommand
         Console.WriteLine("Create new Task started");
 
         var newTaskName = Inputer.InputText("New Task Name", null);
-        if (string.IsNullOrEmpty(newTaskName)) return false;
+        if (string.IsNullOrEmpty(newTaskName))
+        {
+            return false;
+        }
 
         //ახალი ამოცანის შექმნა და ჩამატება ამოცანების სიაში
         if (!parameters.AddTask(newTaskName, new TaskModel()))

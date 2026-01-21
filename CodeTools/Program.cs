@@ -1,15 +1,15 @@
 //Created by ConsoleProgramClassCreator at 11/3/2025 5:54:44 PM
 
 using System;
-using CliParameters;
+using AppCliTools.CliParameters;
 using CodeTools;
 using CodeTools.Models;
-using LibParameters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ParametersManagement.LibParameters;
 using Serilog;
 using Serilog.Events;
-using SystemToolsShared;
+using SystemTools.SystemToolsShared;
 
 ILogger<Program>? logger = null;
 try
@@ -22,12 +22,10 @@ try
     ProgramAttributes.Instance.AppName = appName;
 
     var argParser = new ArgumentsParser<CodeToolsParameters>(args, appName, null);
-    switch (argParser.Analysis())
+
+    if (argParser.Analysis() != EParseResult.Ok)
     {
-        case EParseResult.Ok: break;
-        case EParseResult.Usage: return 1;
-        case EParseResult.Error: return 2;
-        default: throw new ArgumentOutOfRangeException();
+        return 1;
     }
 
     var par = (CodeToolsParameters?)argParser.Par;
@@ -66,5 +64,5 @@ catch (Exception e)
 }
 finally
 {
-    Log.CloseAndFlush();
+    await Log.CloseAndFlushAsync();
 }

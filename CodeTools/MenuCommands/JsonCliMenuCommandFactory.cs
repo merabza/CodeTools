@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CliMenu;
+using AppCliTools.CliMenu;
 using Newtonsoft.Json.Linq;
 
 namespace CodeTools.MenuCommands;

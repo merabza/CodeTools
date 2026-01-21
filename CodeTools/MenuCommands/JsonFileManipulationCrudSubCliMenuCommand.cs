@@ -1,10 +1,10 @@
 //Created by TaskSubMenuCommandCreator at 11/3/2025 5:54:44 PM
 
 using System;
-using CliMenu;
-using CliParameters.CliMenuCommands;
-using LibDataInput;
-using LibParameters;
+using AppCliTools.CliMenu;
+using AppCliTools.CliParameters.CliMenuCommands;
+using AppCliTools.LibDataInput;
+using ParametersManagement.LibParameters;
 
 namespace CodeTools.MenuCommands;
 
@@ -36,7 +36,7 @@ public sealed class JsonFileManipulationCrudSubCliMenuCommand : CliMenuCommand
         //ეს საჭირო იქნება, თუ ამ მენიუში საჭირო გახდება ამოცანის დამატებითი რედაქტორების შექმნა
         //var parameters = (CodeToolsParameters)_parametersManager.Parameters;
         //var task = parameters.GetTask(Name);
-        var key = ConsoleKey.Escape.Value().ToLower();
+        var key = ConsoleKey.Escape.Value().ToUpperInvariant();
         jsonFileManipulationCrudSubMenuSet.AddMenuItem(key,
             new ExitToMainMenuCliMenuCommand("Exit to level up menu", null), key.Length);
         return jsonFileManipulationCrudSubMenuSet;

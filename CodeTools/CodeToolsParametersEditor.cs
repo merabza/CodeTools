@@ -1,9 +1,9 @@
 //Created by ProjectParametersEditorClassCreator at 11/3/2025 5:54:44 PM
 
-using CliParameters;
-using CliParameters.FieldEditors;
+using AppCliTools.CliParameters;
+using AppCliTools.CliParameters.FieldEditors;
 using CodeTools.Models;
-using LibParameters;
+using ParametersManagement.LibParameters;
 
 namespace CodeTools;
 

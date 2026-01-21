@@ -1,7 +1,7 @@
 ﻿using System;
-using CliMenu;
-using CliParameters.CliMenuCommands;
-using LibDataInput;
+using AppCliTools.CliMenu;
+using AppCliTools.CliParameters.CliMenuCommands;
+using AppCliTools.LibDataInput;
 using Newtonsoft.Json.Linq;
 
 namespace CodeTools.MenuCommands;
@@ -28,7 +28,9 @@ public sealed class JsonPropertyCliMenuCommand : CliMenuCommand
         //jsonEditSubMenuSet.AddMenuItem(deleteTaskCommand);
 
         foreach (var cliMenuCommand in JsonCliMenuCommandFactory.Create(_jProperty.Value))
+        {
             jsonEditSubMenuSet.AddMenuItem(cliMenuCommand);
+        }
 
         //var jsonString = File.ReadAllText(_jsonFileName);
         //JObject jsonJObject = JObject.Parse(jsonString);
@@ -43,7 +45,7 @@ public sealed class JsonPropertyCliMenuCommand : CliMenuCommand
         ////ეს საჭირო იქნება, თუ ამ მენიუში საჭირო გახდება ამოცანის დამატებითი რედაქტორების შექმნა
         //var parameters = (CodeToolsParameters)_parametersManager.Parameters;
         //var task = parameters.GetTask(Name);
-        var key = ConsoleKey.Escape.Value().ToLower();
+        var key = ConsoleKey.Escape.Value().ToUpperInvariant();
         jsonEditSubMenuSet.AddMenuItem(key, new ExitToMainMenuCliMenuCommand("Exit to level up menu", null),
             key.Length);
         return jsonEditSubMenuSet;

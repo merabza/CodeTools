@@ -1,16 +1,17 @@
 //Created by ProjectMainClassCreatorForCliAppWithMenu at 11/3/2025 5:54:44 PM
 
 using System;
+using System.Globalization;
 using System.Linq;
-using CliMenu;
-using CliParameters.CliMenuCommands;
-using CliTools;
-using CliTools.CliMenuCommands;
+using AppCliTools.CliMenu;
+using AppCliTools.CliParameters.CliMenuCommands;
+using AppCliTools.CliTools;
+using AppCliTools.CliTools.CliMenuCommands;
+using AppCliTools.LibDataInput;
 using CodeTools.MenuCommands;
 using CodeTools.Models;
-using LibDataInput;
-using LibParameters;
 using Microsoft.Extensions.Logging;
+using ParametersManagement.LibParameters;
 
 namespace CodeTools;
 
@@ -43,10 +44,12 @@ public sealed class CodeToolsCliAppLoop : CliAppLoop
         var newAppTaskCommand = new NewTaskCommand(_parametersManager);
         mainMenuSet.AddMenuItem(newAppTaskCommand);
         foreach (var kvp in parameters.Tasks.OrderBy(o => o.Key))
+        {
             mainMenuSet.AddMenuItem(new TaskSubMenuCommand(_logger, _parametersManager, kvp.Key));
+        }
 
         //პროგრამიდან გასასვლელი
-        var key = ConsoleKey.Escape.Value().ToLower();
+        var key = ConsoleKey.Escape.Value().ToUpperInvariant();
         mainMenuSet.AddMenuItem(key, new ExitCliMenuCommand(), key.Length);
 
         return mainMenuSet;
