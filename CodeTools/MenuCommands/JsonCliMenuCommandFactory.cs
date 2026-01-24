@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using AppCliTools.CliMenu;
 using Newtonsoft.Json.Linq;
 
@@ -50,7 +51,7 @@ public sealed class JsonCliMenuCommandFactory
             case JTokenType.TimeSpan:
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new SwitchExpressionException();
         }
 
         return [];
@@ -98,7 +99,7 @@ public sealed class JsonCliMenuCommandFactory
             case JTokenType.TimeSpan:
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                throw new SwitchExpressionException();
         }
 
         return [];

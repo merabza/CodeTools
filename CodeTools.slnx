@@ -22,6 +22,9 @@
   <Folder Name="/SystemTools/">
     <Project Path="../SystemTools/SystemTools.SystemToolsShared/SystemTools.SystemToolsShared.csproj" />
   </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="CodeTools.Tests/CodeTools.Tests.csproj" Id="cc3a21bd-9e05-486c-ad5e-1241987a8cba" />
+  </Folder>
   <Folder Name="/ToolsManagement/">
     <Project Path="../ToolsManagement/ToolsManagement.LibToolActions/ToolsManagement.LibToolActions.csproj" />
   </Folder>
