@@ -35,13 +35,13 @@ public sealed class TaskCommand : CliMenuCommand
             return false;
         }
 
-        var crawlerRunner = new CodeToolsTaskRunner(_logger, parameters, _taskName, task);
+        var codeToolsRunner = new CodeToolsTaskRunner(_logger, parameters, _taskName, task);
 
         //დავინიშნოთ დრო
         var watch = Stopwatch.StartNew();
         Console.WriteLine("Crawler is running...");
         Console.WriteLine("-- - ");
-        crawlerRunner.Run();
+        codeToolsRunner.Run();
         watch.Stop();
         Console.WriteLine("-- - ");
         Console.WriteLine($"Crawler Finished.Time taken: {watch.Elapsed.Seconds} second(s)");
