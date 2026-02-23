@@ -1,5 +1,7 @@
 //Created by EditTaskNameCommandCreator at 11/3/2025 5:54:44 PM
 
+using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using AppCliTools.LibMenuInput;
 using CodeTools.Models;
@@ -21,7 +23,7 @@ public sealed class EditJsonFileNameNameCliMenuCommand : CliMenuCommand
         _jsonFileName = jsonFileName;
     }
 
-    protected override bool RunBody()
+    protected override async ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
         var parameters = (CodeToolsParameters)_parametersManager.Parameters;
         if (parameters.JsonFilesForSortPaths.Contains(_jsonFileName))
@@ -44,7 +46,8 @@ public sealed class EditJsonFileNameNameCliMenuCommand : CliMenuCommand
 
         parameters.JsonFilesForSortPaths.Remove(_jsonFileName);
         parameters.JsonFilesForSortPaths.Add(newJsonFileName);
-        _parametersManager.Save(parameters, $" Task Renamed from {_jsonFileName} To {newJsonFileName}");
+        await _parametersManager.Save(parameters, $" Task Renamed from {_jsonFileName} To {newJsonFileName}", null,
+            cancellationToken);
 
         return true;
     }

@@ -1,6 +1,8 @@
 //Created by NewTaskCommandCreator at 11/3/2025 5:54:44 PM
 
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using AppCliTools.LibMenuInput;
 using CodeTools.Models;
@@ -19,7 +21,7 @@ public sealed class NewJsonFileCommand : CliMenuCommand
         _parametersManager = parametersManager;
     }
 
-    protected override bool RunBody()
+    protected override async ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
         MenuAction = EMenuAction.Reload;
         var parameters = (CodeToolsParameters)_parametersManager.Parameters;
@@ -41,7 +43,7 @@ public sealed class NewJsonFileCommand : CliMenuCommand
         }
 
         //პარამეტრების შენახვა (ცვლილებების გათვალისწინებით)
-        _parametersManager.Save(parameters, "Create New Json Record Finished");
+        await _parametersManager.Save(parameters, "Create New Json Record Finished", null, cancellationToken);
         return true;
     }
 }

@@ -1,5 +1,7 @@
 //Created by EditTaskNameCommandCreator at 11/3/2025 5:54:44 PM
 
+using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using AppCliTools.LibDataInput;
 using CodeTools.Models;
@@ -21,7 +23,7 @@ public sealed class EditTaskNameCommand : CliMenuCommand
         _taskName = taskName;
     }
 
-    protected override bool RunBody()
+    protected override async ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
         var parameters = (CodeToolsParameters)_parametersManager.Parameters;
         var task = parameters.GetTask(_taskName);
@@ -57,7 +59,8 @@ public sealed class EditTaskNameCommand : CliMenuCommand
             return false;
         }
 
-        _parametersManager.Save(parameters, $" Task Renamed from {_taskName} To {newTaskName}");
+        await _parametersManager.Save(parameters, $" Task Renamed from {_taskName} To {newTaskName}", null,
+            cancellationToken);
 
         return true;
     }

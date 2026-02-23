@@ -2,6 +2,8 @@
 
 using System;
 using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using CodeTools.Models;
 using Microsoft.Extensions.Logging;
@@ -24,7 +26,7 @@ public sealed class TaskCommand : CliMenuCommand
         _taskName = taskName;
     }
 
-    protected override bool RunBody()
+    protected override ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
         MenuAction = EMenuAction.Reload;
         var parameters = (CodeToolsParameters)_parametersManager.Parameters;
@@ -32,7 +34,7 @@ public sealed class TaskCommand : CliMenuCommand
         if (task == null)
         {
             StShared.WriteErrorLine($"Task {_taskName} does not found", true);
-            return false;
+            return ValueTask.FromResult(false);
         }
 
         var codeToolsRunner = new CodeToolsTaskRunner(_logger, parameters, _taskName, task);
@@ -46,6 +48,6 @@ public sealed class TaskCommand : CliMenuCommand
         Console.WriteLine("-- - ");
         Console.WriteLine($"Crawler Finished.Time taken: {watch.Elapsed.Seconds} second(s)");
         StShared.Pause();
-        return true;
+        return new ValueTask<bool>(true);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using CodeTools.ToolActions;
 using Microsoft.Extensions.Logging;
@@ -17,19 +18,13 @@ public sealed class RunJsonSortCliMenuCommand : CliMenuCommand
         _jsonFileName = jsonFileName;
     }
 
-    protected override bool RunBody()
+    protected override async ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
         var runSortToolAction = new RunSortToolAction(_logger, _jsonFileName);
 
         try
         {
-            // ReSharper disable once using
-            // ReSharper disable once DisposableConstructor
-            using var cts = new CancellationTokenSource();
-            var token = cts.Token;
-            token.ThrowIfCancellationRequested();
-
-            return runSortToolAction.Run(token).Result;
+            return await runSortToolAction.Run(cancellationToken);
         }
         catch (OperationCanceledException)
         {

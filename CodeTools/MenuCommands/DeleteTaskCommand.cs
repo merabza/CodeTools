@@ -1,5 +1,7 @@
 //Created by DeleteTaskCommandCreator at 11/3/2025 5:54:44 PM
 
+using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using AppCliTools.LibDataInput;
 using CodeTools.Models;
@@ -21,7 +23,7 @@ public sealed class DeleteTaskCommand : CliMenuCommand
         _taskName = taskName;
     }
 
-    protected override bool RunBody()
+    protected override async ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
         var parameters = (CodeToolsParameters)_parametersManager.Parameters;
         var task = parameters.GetTask(_taskName);
@@ -37,7 +39,7 @@ public sealed class DeleteTaskCommand : CliMenuCommand
         }
 
         parameters.RemoveTask(_taskName);
-        _parametersManager.Save(parameters, $"Task {_taskName} deleted.");
+        await _parametersManager.Save(parameters, $"Task {_taskName} deleted.", null, cancellationToken);
         return true;
     }
 }

@@ -1,6 +1,8 @@
 //Created by DeleteTaskCommandCreator at 11/3/2025 5:54:44 PM
 
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using AppCliTools.LibDataInput;
 
@@ -16,7 +18,7 @@ public sealed class ClearJsonCliMenuCommand : CliMenuCommand
         _jsonFileName = jsonFileName;
     }
 
-    protected override bool RunBody()
+    protected override async ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
         if (!Inputer.InputBool($"This will Delete All data from Json File {_jsonFileName}. are you sure ? ", false,
                 false))
@@ -24,7 +26,7 @@ public sealed class ClearJsonCliMenuCommand : CliMenuCommand
             return false;
         }
 
-        File.WriteAllText(_jsonFileName, "");
+        await File.WriteAllTextAsync(_jsonFileName, "", cancellationToken);
 
         return true;
     }

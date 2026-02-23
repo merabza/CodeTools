@@ -1,6 +1,8 @@
 //Created by TaskSubMenuCommandCreator at 11/3/2025 5:54:44 PM
 
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using AppCliTools.CliParameters.CliMenuCommands;
 using AppCliTools.LibDataInput;
@@ -22,9 +24,9 @@ public sealed class TaskSubMenuCommand : CliMenuCommand
         _parametersManager = parametersManager;
     }
 
-    protected override bool RunBody()
+    protected override ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
-        return true;
+        return new ValueTask<bool>(true);
     }
 
     public override CliMenuSet GetSubMenu()

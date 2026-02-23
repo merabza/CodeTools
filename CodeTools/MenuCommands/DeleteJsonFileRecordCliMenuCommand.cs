@@ -1,5 +1,7 @@
 //Created by DeleteTaskCommandCreator at 11/3/2025 5:54:44 PM
 
+using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using AppCliTools.LibDataInput;
 using CodeTools.Models;
@@ -21,7 +23,7 @@ public sealed class DeleteJsonFileRecordCliMenuCommand : CliMenuCommand
         _jsonFileName = jsonFileName;
     }
 
-    protected override bool RunBody()
+    protected override async ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
         var parameters = (CodeToolsParameters)_parametersManager.Parameters;
         if (parameters.JsonFilesForSortPaths.Contains(_jsonFileName))
@@ -36,7 +38,8 @@ public sealed class DeleteJsonFileRecordCliMenuCommand : CliMenuCommand
         }
 
         parameters.JsonFilesForSortPaths.Remove(_jsonFileName);
-        _parametersManager.Save(parameters, $"record of JsonFile {_jsonFileName} deleted.");
+        await _parametersManager.Save(parameters, $"record of JsonFile {_jsonFileName} deleted.", null,
+            cancellationToken);
         return true;
     }
 }

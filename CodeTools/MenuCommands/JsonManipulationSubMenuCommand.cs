@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using AppCliTools.CliMenu;
 using AppCliTools.CliParameters.CliMenuCommands;
 using AppCliTools.LibDataInput;
@@ -19,9 +21,9 @@ public sealed class JsonManipulationSubMenuCommand : CliMenuCommand
         _parametersManager = parametersManager;
     }
 
-    protected override bool RunBody()
+    protected override ValueTask<bool> RunBody(CancellationToken cancellationToken = default)
     {
-        return true;
+        return new ValueTask<bool>(true);
     }
 
     public override CliMenuSet GetSubMenu()
