@@ -11,7 +11,7 @@ public sealed class CodeToolsParametersTests
         var parameters = new CodeToolsParameters();
 
         // Act
-        var result = parameters.CheckBeforeSave();
+        bool result = parameters.CheckBeforeSave();
 
         // Assert
         Assert.True(result);
@@ -22,12 +22,12 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var taskName = "TestTask";
+        const string taskName = "TestTask";
         var task = new TaskModel();
         parameters.Tasks[taskName] = task;
 
         // Act
-        var result = parameters.GetTask(taskName);
+        TaskModel? result = parameters.GetTask(taskName);
 
         // Assert
         Assert.NotNull(result);
@@ -41,7 +41,7 @@ public sealed class CodeToolsParametersTests
         var parameters = new CodeToolsParameters();
 
         // Act
-        var result = parameters.GetTask("NonExistentTask");
+        TaskModel? result = parameters.GetTask("NonExistentTask");
 
         // Assert
         Assert.Null(result);
@@ -52,11 +52,11 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var taskName = "TestTask";
+        string taskName = "TestTask";
         parameters.Tasks[taskName] = new TaskModel();
 
         // Act
-        var result = parameters.CheckNewTaskNameValid(taskName, taskName);
+        bool result = parameters.CheckNewTaskNameValid(taskName, taskName);
 
         // Assert
         Assert.True(result);
@@ -69,7 +69,7 @@ public sealed class CodeToolsParametersTests
         var parameters = new CodeToolsParameters();
 
         // Act
-        var result = parameters.CheckNewTaskNameValid("NonExistentTask", "NewTask");
+        bool result = parameters.CheckNewTaskNameValid("NonExistentTask", "NewTask");
 
         // Assert
         Assert.False(result);
@@ -80,11 +80,11 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var oldTaskName = "OldTask";
+        string oldTaskName = "OldTask";
         parameters.Tasks[oldTaskName] = new TaskModel();
 
         // Act
-        var result = parameters.CheckNewTaskNameValid(oldTaskName, "NewTask");
+        bool result = parameters.CheckNewTaskNameValid(oldTaskName, "NewTask");
 
         // Assert
         Assert.True(result);
@@ -95,13 +95,13 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var oldTaskName = "OldTask";
-        var newTaskName = "NewTask";
+        string oldTaskName = "OldTask";
+        string newTaskName = "NewTask";
         parameters.Tasks[oldTaskName] = new TaskModel();
         parameters.Tasks[newTaskName] = new TaskModel();
 
         // Act
-        var result = parameters.CheckNewTaskNameValid(oldTaskName, newTaskName);
+        bool result = parameters.CheckNewTaskNameValid(oldTaskName, newTaskName);
 
         // Assert
         Assert.False(result);
@@ -112,11 +112,11 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var taskName = "TestTask";
+        string taskName = "TestTask";
         parameters.Tasks[taskName] = new TaskModel();
 
         // Act
-        var result = parameters.RemoveTask(taskName);
+        bool result = parameters.RemoveTask(taskName);
 
         // Assert
         Assert.True(result);
@@ -130,7 +130,7 @@ public sealed class CodeToolsParametersTests
         var parameters = new CodeToolsParameters();
 
         // Act
-        var result = parameters.RemoveTask("NonExistentTask");
+        bool result = parameters.RemoveTask("NonExistentTask");
 
         // Assert
         Assert.False(result);
@@ -141,11 +141,11 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var taskName = "TestTask";
+        string taskName = "TestTask";
         var task = new TaskModel();
 
         // Act
-        var result = parameters.AddTask(taskName, task);
+        bool result = parameters.AddTask(taskName, task);
 
         // Assert
         Assert.True(result);
@@ -158,13 +158,13 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var taskName = "TestTask";
+        string taskName = "TestTask";
         var existingTask = new TaskModel();
         var newTask = new TaskModel();
         parameters.Tasks[taskName] = existingTask;
 
         // Act
-        var result = parameters.AddTask(taskName, newTask);
+        bool result = parameters.AddTask(taskName, newTask);
 
         // Assert
         Assert.False(result);
@@ -176,10 +176,10 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var fileName = "test.json";
+        string fileName = "test.json";
 
         // Act
-        var result = parameters.AddJsonFileName(fileName);
+        bool result = parameters.AddJsonFileName(fileName);
 
         // Assert
         Assert.True(result);
@@ -191,11 +191,11 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var fileName = "test.json";
+        string fileName = "test.json";
         parameters.JsonFilesForSortPaths.Add(fileName);
 
         // Act
-        var result = parameters.AddJsonFileName(fileName);
+        bool result = parameters.AddJsonFileName(fileName);
 
         // Assert
         Assert.False(result);
@@ -212,7 +212,7 @@ public sealed class CodeToolsParametersTests
         var parameters = new CodeToolsParameters();
 
         // Act
-        var result = parameters.AddJsonFileName(fileName!);
+        bool result = parameters.AddJsonFileName(fileName!);
 
         // Assert
         Assert.False(result);
@@ -256,7 +256,7 @@ public sealed class CodeToolsParametersTests
     {
         // Arrange
         var parameters = new CodeToolsParameters();
-        var logFolder = "C:\\Logs";
+        string logFolder = "C:\\Logs";
 
         // Act
         parameters.LogFolder = logFolder;
