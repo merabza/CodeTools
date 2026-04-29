@@ -34,6 +34,7 @@ public sealed class CodeToolsTaskRunner
     {
         try
         {
+            Console.WriteLine(_task?.GetItemKey());
         }
         catch (Exception e)
         {
